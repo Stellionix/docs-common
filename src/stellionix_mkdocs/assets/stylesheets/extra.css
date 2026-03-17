@@ -1,8 +1,8 @@
 :root {
   --docs-bg-dark: #060512;
   --docs-bg-dark-soft: #0d0b1f;
-  --docs-bg-light: #f3f7ff;
-  --docs-bg-light-soft: #ffffff;
+  --docs-bg-light: #edf3ff;
+  --docs-bg-light-soft: #f9fbff;
   --docs-panel-dark: rgba(12, 14, 34, 0.78);
   --docs-panel-light: rgba(255, 255, 255, 0.78);
   --docs-line-dark: rgba(120, 100, 255, 0.2);
@@ -25,11 +25,40 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+[data-md-color-scheme="default"] {
+  --md-default-fg-color: #10162f;
+  --md-default-fg-color--light: #42506f;
+  --md-default-fg-color--lighter: #667494;
+  --md-default-fg-color--lightest: rgba(16, 22, 47, 0.12);
+  --md-default-bg-color: #f7f9ff;
+  --md-default-bg-color--light: #ffffff;
+  --md-default-bg-color--lighter: #ffffff;
+  --md-code-fg-color: #10162f;
+  --md-code-bg-color: rgba(16, 22, 47, 0.06);
+  --md-typeset-a-color: #285cff;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: #f6f7ff;
+  --md-default-fg-color--light: #b4bcdf;
+  --md-default-fg-color--lighter: #8c97c2;
+  --md-default-fg-color--lightest: rgba(246, 247, 255, 0.12);
+  --md-default-bg-color: #060512;
+  --md-default-bg-color--light: #0d0b1f;
+  --md-default-bg-color--lighter: #14112a;
+  --md-code-fg-color: #f6f7ff;
+  --md-code-bg-color: rgba(255, 255, 255, 0.08);
+  --md-typeset-a-color: #57d9ff;
+}
+
+body,
+.md-container,
+.md-main,
+.md-main__inner {
   background:
-    radial-gradient(circle at 18% 0%, rgba(0, 184, 255, 0.14), transparent 24%),
-    radial-gradient(circle at 82% 10%, rgba(133, 88, 255, 0.12), transparent 24%),
-    linear-gradient(145deg, #f5f8ff 0%, #eef4ff 42%, #f8fbff 100%);
+    radial-gradient(circle at 18% 0%, rgba(0, 184, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 82% 8%, rgba(133, 88, 255, 0.1), transparent 24%),
+    linear-gradient(160deg, #ecf2ff 0%, #f6f9ff 46%, #eef4ff 100%);
 }
 
 body::before {
@@ -41,10 +70,14 @@ body::before {
     linear-gradient(rgba(52, 71, 141, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(52, 71, 141, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 92%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 96%);
 }
 
-[data-md-color-scheme="slate"] body {
+[data-md-color-scheme="slate"],
+[data-md-color-scheme="slate"] body,
+[data-md-color-scheme="slate"] .md-container,
+[data-md-color-scheme="slate"] .md-main,
+[data-md-color-scheme="slate"] .md-main__inner {
   background:
     radial-gradient(circle at 18% 0%, rgba(0, 184, 255, 0.2), transparent 28%),
     radial-gradient(circle at 82% 10%, rgba(133, 88, 255, 0.18), transparent 26%),
@@ -56,6 +89,16 @@ body::before {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.md-main,
+.md-main__inner,
+.md-content,
+.md-content__inner,
+.md-sidebar,
+.md-sidebar__scrollwrap,
+.md-sidebar__inner {
+  background-color: transparent;
 }
 
 .md-header {
@@ -117,7 +160,7 @@ body::before {
 
 [data-md-color-scheme="default"] .md-search__form,
 [data-md-color-scheme="default"] .md-search__output {
-  background: rgba(16, 22, 47, 0.06) !important;
+  background: rgba(16, 22, 47, 0.08) !important;
 }
 
 [data-md-color-scheme="slate"] .md-search__form,
@@ -137,6 +180,22 @@ body::before {
   padding-bottom: 3rem;
 }
 
+[data-md-color-scheme="default"] .md-typeset {
+  color: #10162f;
+}
+
+[data-md-color-scheme="default"] .md-typeset p,
+[data-md-color-scheme="default"] .md-typeset li,
+[data-md-color-scheme="default"] .md-typeset td,
+[data-md-color-scheme="default"] .md-typeset blockquote {
+  color: #31405f;
+}
+
+[data-md-color-scheme="default"] .md-nav,
+[data-md-color-scheme="default"] .md-sidebar {
+  color: #36415d;
+}
+
 .hero {
   position: relative;
   overflow: hidden;
@@ -144,10 +203,10 @@ body::before {
   padding: 1.4rem 1.5rem;
   margin-bottom: 1.4rem;
   border: 1px solid rgba(87, 217, 255, 0.14);
-  box-shadow: var(--docs-shadow-light);
+  box-shadow: 0 20px 40px rgba(72, 92, 170, 0.14);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(243, 247, 255, 0.9)),
-    linear-gradient(135deg, rgba(87, 217, 255, 0.09), rgba(176, 124, 255, 0.12));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(240, 245, 255, 0.96)),
+    linear-gradient(135deg, rgba(87, 217, 255, 0.1), rgba(176, 124, 255, 0.14));
 }
 
 .hero::before {
@@ -207,8 +266,8 @@ body::before {
 
 [data-md-color-scheme="default"] .md-typeset .md-button:not(.md-button--primary) {
   color: var(--docs-text-light);
-  border-color: rgba(133, 88, 255, 0.28);
-  background: rgba(133, 88, 255, 0.08);
+  border-color: rgba(98, 123, 255, 0.24);
+  background: rgba(98, 123, 255, 0.08);
 }
 
 [data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary) {
@@ -234,11 +293,11 @@ body::before {
 
 .md-typeset .grid.cards > ul > li {
   position: relative;
-  border: 1px solid rgba(87, 217, 255, 0.12);
-  box-shadow: var(--docs-shadow-light);
+  border: 1px solid rgba(98, 123, 255, 0.16);
+  box-shadow: 0 18px 36px rgba(72, 92, 170, 0.12);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(244, 247, 255, 0.96)),
-    linear-gradient(135deg, rgba(87, 217, 255, 0.05), rgba(176, 124, 255, 0.08));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(240, 245, 255, 0.98)),
+    linear-gradient(135deg, rgba(87, 217, 255, 0.06), rgba(176, 124, 255, 0.09));
 }
 
 .md-typeset .grid.cards > ul > li::before {
@@ -258,8 +317,8 @@ body::before {
 
 .md-typeset .admonition,
 .md-typeset details {
-  border: 1px solid rgba(87, 217, 255, 0.12);
-  box-shadow: var(--docs-shadow-light);
+  border: 1px solid rgba(98, 123, 255, 0.14);
+  box-shadow: 0 16px 34px rgba(72, 92, 170, 0.1);
 }
 
 .md-typeset .admonition-title,
@@ -272,8 +331,8 @@ body::before {
 [data-md-color-scheme="default"] .md-typeset .admonition,
 [data-md-color-scheme="default"] .md-typeset details {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(243, 247, 255, 0.92)),
-    linear-gradient(135deg, rgba(87, 217, 255, 0.05), rgba(176, 124, 255, 0.06));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(239, 244, 255, 0.96)),
+    linear-gradient(135deg, rgba(87, 217, 255, 0.05), rgba(176, 124, 255, 0.07));
 }
 
 [data-md-color-scheme="default"] .md-typeset .admonition.note,
