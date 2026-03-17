@@ -111,12 +111,29 @@ class SharedDocsPlugin(BasePlugin):
                 markdown_extensions.append(extension)
         config["markdown_extensions"] = markdown_extensions
 
-    def _apply_extra_defaults(self, config):
-        extra = dict(config.get("extra", {}) or {})
-        version = dict(extra.get("version", {}) or {})
-        version.setdefault("provider", "mike")
-        extra["version"] = version
-        config["extra"] = extra
+  def _apply_extra_defaults(self, config):
+      extra = dict(config.get("extra", {}) or {})
+      version = dict(extra.get("version", {}) or {})
+      version.setdefault("provider", "mike")
+      extra["version"] = version
+
+      social = list(extra.get("social", []) or [])
+      if not social:
+          social = [
+              {
+                  "icon": "fontawesome/brands/github",
+                  "link": "https://github.com/Stellionix",
+              },
+              {
+                  "icon": "fontawesome/brands/discord",
+                  "link": "https://discord.com/invite/jCsvJxS",
+              },
+          ]
+      extra["social"] = social
+      config["extra"] = extra
+
+      if not config.get("copyright"):
+          config["copyright"] = "Copyright © Stellionix"
 
 
 def files_package(package_name: str):
