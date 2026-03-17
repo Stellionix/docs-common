@@ -73,6 +73,9 @@ jobs:
           pip install "mike==${{ inputs.mike-version }}"
           pip install -r "${{ inputs.requirements-path }}"
 
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
       - name: Read project version
         id: project_version
         env:
