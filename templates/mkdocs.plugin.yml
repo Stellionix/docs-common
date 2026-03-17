@@ -1,0 +1,22 @@
+site_name: MyPlugin Documentation
+site_url: https://<owner>.github.io/MyPlugin/
+repo_url: https://github.com/<owner>/MyPlugin
+repo_name: <owner>/MyPlugin
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - stellionix-shared-docs
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/<owner>/MyPlugin
+
+nav:
+  - Home: index.md
+  - Download: download.md
+  - Installation: installation.md
+  - Configuration: configuration.md

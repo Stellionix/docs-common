@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stellionix-mkdocs"
+version = "0.1.0"
+description = "Shared MkDocs defaults and assets for Stellionix plugin documentation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Arthur Pavarino" }
+]
+dependencies = [
+  "mkdocs>=1.6,<2",
+  "mkdocs-material>=9.6,<10"
+]
+
+[project.entry-points."mkdocs.plugins"]
+stellionix-shared-docs = "stellionix_mkdocs.plugin:SharedDocsPlugin"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+stellionix_mkdocs = ["assets/stylesheets/*.css"]
