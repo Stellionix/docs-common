@@ -1,0 +1,86 @@
+name: Reusable Deploy Docs
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        type: string
+        required: false
+        default: "3.12"
+      java-version:
+        type: string
+        required: false
+        default: "17"
+      working-directory:
+        type: string
+        required: false
+        default: "."
+      requirements-path:
+        type: string
+        required: false
+        default: "requirements.txt"
+      version-command:
+        type: string
+        required: false
+        default: "./gradlew -q printVersion"
+      deploy-alias:
+        type: string
+        required: false
+        default: "latest"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-mike-${{ github.repository }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.java-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Install dependencies
+        run: pip install -r "${{ inputs.requirements-path }}"
+
+      - name: Read project version
+        id: project_version
+        env:
+          VERSION_COMMAND: ${{ inputs.version-command }}
+        run: |
+          version="$(eval "$VERSION_COMMAND")"
+          echo "value=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy versions with mike
+        run: |
+          mike deploy --push --update-aliases "${{ steps.project_version.outputs.value }}" "${{ inputs.deploy-alias }}"
+          mike set-default --push "${{ inputs.deploy-alias }}"
