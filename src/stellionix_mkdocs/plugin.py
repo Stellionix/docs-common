@@ -19,8 +19,8 @@ DEFAULT_PALETTE = [
     {
         "media": "(prefers-color-scheme: light)",
         "scheme": "default",
-        "primary": "teal",
-        "accent": "amber",
+        "primary": "indigo",
+        "accent": "light blue",
         "toggle": {
             "icon": "material/weather-night",
             "name": "Switch to dark mode",
@@ -29,8 +29,8 @@ DEFAULT_PALETTE = [
     {
         "media": "(prefers-color-scheme: dark)",
         "scheme": "slate",
-        "primary": "cyan",
-        "accent": "amber",
+        "primary": "indigo",
+        "accent": "light blue",
         "toggle": {
             "icon": "material/weather-sunny",
             "name": "Switch to light mode",
