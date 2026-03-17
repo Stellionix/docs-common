@@ -166,12 +166,12 @@ on:
       - "build.gradle.kts"
       - "deadchest-plugin/build.gradle.kts"
       - "deadchest-plugin/src/main/resources/plugin.yml"
-      - ".github/workflows/docs.yml"
+      - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
 jobs:
   deploy:
-    uses: Stellionix/docs-common/.github/workflows/deploy-docs.yml@main
+    uses: Stellionix/docs-common/.github/workflows/deploy-deploy-docs.yml@main
 ```
 
 This keeps plugin repositories focused on:
@@ -206,7 +206,7 @@ Example with explicit overrides:
 ```yml
 jobs:
   deploy:
-    uses: Stellionix/docs-common/.github/workflows/deploy-docs.yml@main
+    uses: Stellionix/docs-common/.github/workflows/deploy-deploy-docs.yml@main
     with:
       python-version: "3.12"
       java-version: "17"
