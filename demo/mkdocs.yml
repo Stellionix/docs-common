@@ -1,0 +1,28 @@
+site_name: DeadChest Documentation Demo
+site_description: Local sandbox modeled after the DeadChest documentation structure
+site_url: http://localhost:8000/
+repo_url: https://github.com/Stellionix/docs-common
+repo_name: Stellionix/docs-common
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - stellionix-shared-docs
+
+nav:
+  - Getting Started:
+      - Home: index.md
+      - Download: download.md
+      - Installation: installation.md
+      - How It Works: how-it-works.md
+  - Administration:
+      - Configuration: configuration.md
+      - Commands and Permissions: commands-and-permissions.md
+      - Customization: customization.md
+      - WorldGuard Integration: worldguard-integration.md
+      - Troubleshooting: troubleshooting.md
+  - Developer:
+      - API: api.md
+      - Contribution: contribution.md

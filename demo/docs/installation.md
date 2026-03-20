@@ -1,0 +1,26 @@
+# Installation
+
+## DeadChest - Installation
+
+Make sure you downloaded the plugin first.
+
+### Install steps
+
+1. Stop your server.
+2. Put `DeadChest-X.X.X.jar` into your `plugins/` folder.
+3. Start the server.
+4. Confirm startup in console logs.
+
+Expected log example:
+
+```text
+[DeadChest] Enabling DeadChest vX.X.X
+```
+
+### First checks
+
+- Confirm no startup errors are shown.
+- Verify `plugins/DeadChest/` was generated.
+- Run `/dc list` with the proper permission to confirm command registration.
+
+If you encounter issues, check [troubleshooting](troubleshooting.md).

@@ -140,6 +140,35 @@ nav:
   - Configuration: configuration.md
 ```
 
+## Local Design Sandbox
+
+Un projet de demo minimal est disponible dans [`demo/`](./demo/) pour valider rapidement le rendu visuel de la lib, avec une arborescence calquee sur la logique de la doc Deadchest.
+
+Installation:
+
+```bash
+python -m venv demo/.venv
+demo/.venv/Scripts/pip install -r demo/requirements.txt
+```
+
+Lancement:
+
+```bash
+demo/.venv/Scripts/mkdocs serve -f demo/mkdocs.yml
+```
+
+Ou en une commande:
+
+```powershell
+./demo/serve-demo.ps1
+```
+
+Build local:
+
+```bash
+demo/.venv/Scripts/mkdocs build -f demo/mkdocs.yml
+```
+
 ## Reusable GitHub Actions Workflow
 
 This repository can also centralize the docs deployment workflow itself.
